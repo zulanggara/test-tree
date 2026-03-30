@@ -167,3 +167,9 @@ body {
   display: inline-block;
   flex-shrink: 0;
 }
+
+/* Zoom transition */
+.tree-zoom-canvas {
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
