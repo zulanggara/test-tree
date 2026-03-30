@@ -1,4 +1,4 @@
-import { FamilyMember, FamilyData, TreeNode } from '@/types';
+import { FamilyMember, FamilyData, TreeNode, Marriage, MarriageStatus } from '@/types';
 
 export function buildMemberMap(data: FamilyData): Map<string, FamilyMember> {
   const map = new Map<string, FamilyMember>();
@@ -8,7 +8,57 @@ export function buildMemberMap(data: FamilyData): Map<string, FamilyMember> {
   return map;
 }
 
-// BFS: get all descendants
+// Ambil semua spouseId dari member (support marriages + legacy spouseIds)
+export function getSpouseIds(member: FamilyMember): string[] {
+  if (member.marriages && member.marriages.length > 0) {
+    return member.marriages.map(m => m.spouseId);
+  }
+  return member.spouseIds;
+}
+
+// Ambil info marriage tertentu
+export function getMarriage(member: FamilyMember, spouseId: string): Marriage | null {
+  if (member.marriages) {
+    return member.marriages.find(m => m.spouseId === spouseId) ?? null;
+  }
+  // Legacy fallback: jika tidak ada marriages, anggap aktif
+  if (member.spouseIds.includes(spouseId)) {
+    return { spouseId, status: 'married' };
+  }
+  return null;
+}
+
+// Apakah pernikahan ini masih aktif?
+export function isActiveMarriage(marriage: Marriage | null): boolean {
+  if (!marriage) return false;
+  return marriage.status === 'married' || marriage.status === 'separated';
+}
+
+// Status label untuk UI
+export function getMarriageStatusLabel(status: MarriageStatus): string {
+  const labels: Record<MarriageStatus, string> = {
+    married: 'Menikah',
+    widowed: 'Duda/Janda (Wafat)',
+    divorced: 'Bercerai',
+    separated: 'Pisah',
+    annulled: 'Dibatalkan',
+  };
+  return labels[status];
+}
+
+// Warna badge per status
+export function getMarriageStatusColor(status: MarriageStatus): string {
+  const colors: Record<MarriageStatus, string> = {
+    married: 'text-green-400 bg-green-500/10 border-green-500/30',
+    widowed: 'text-gray-400 bg-gray-500/10 border-gray-500/30',
+    divorced: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
+    separated: 'text-orange-400 bg-orange-500/10 border-orange-500/30',
+    annulled: 'text-red-400 bg-red-500/10 border-red-500/30',
+  };
+  return colors[status];
+}
+
+// BFS: semua keturunan
 export function getDescendants(memberId: string, memberMap: Map<string, FamilyMember>): Set<string> {
   const result = new Set<string>();
   const queue: string[] = [memberId];
@@ -20,10 +70,9 @@ export function getDescendants(memberId: string, memberMap: Map<string, FamilyMe
       if (!result.has(childId)) {
         result.add(childId);
         queue.push(childId);
-        // Also include spouses of descendants
         const child = memberMap.get(childId);
         if (child) {
-          for (const spouseId of child.spouseIds) {
+          for (const spouseId of getSpouseIds(child)) {
             result.add(spouseId);
           }
         }
@@ -33,7 +82,7 @@ export function getDescendants(memberId: string, memberMap: Map<string, FamilyMe
   return result;
 }
 
-// Recursive: get all ancestors
+// Recursive: semua leluhur
 export function getAncestors(memberId: string, memberMap: Map<string, FamilyMember>): Set<string> {
   const result = new Set<string>();
   function traverse(id: string) {
@@ -41,12 +90,9 @@ export function getAncestors(memberId: string, memberMap: Map<string, FamilyMemb
     if (!member) return;
     if (member.fatherId && !result.has(member.fatherId)) {
       result.add(member.fatherId);
-      // Include spouse of ancestor
       const father = memberMap.get(member.fatherId);
       if (father) {
-        for (const spouseId of father.spouseIds) {
-          result.add(spouseId);
-        }
+        for (const spouseId of getSpouseIds(father)) result.add(spouseId);
       }
       traverse(member.fatherId);
     }
@@ -59,39 +105,29 @@ export function getAncestors(memberId: string, memberMap: Map<string, FamilyMemb
   return result;
 }
 
-// Find root members (no parents)
 export function findRoots(members: FamilyMember[]): FamilyMember[] {
   return members.filter(m => !m.fatherId && !m.motherId);
 }
 
-// Build tree structure from roots
 export function buildTree(members: FamilyMember[], memberMap: Map<string, FamilyMember>): TreeNode[] {
   const visited = new Set<string>();
-  
-  // Find true roots: members with no parents
-  const roots = findRoots(members).filter(m => m.childrenIds.length > 0 || m.spouseIds.length > 0);
-  
-  // Deduplicate: if a root is spouse of another root, pick the one with parents or male first
+
+  const roots = findRoots(members).filter(m => m.childrenIds.length > 0 || getSpouseIds(m).length > 0);
   const rootSet = new Set<string>();
   for (const root of roots) {
-    // Skip if already added as a couple unit
     if (rootSet.has(root.id)) continue;
-    // Check if this root is a spouse of another root that's already included
-    const isSpouseOfExisting = root.spouseIds.some(sid => rootSet.has(sid));
-    if (!isSpouseOfExisting) {
-      rootSet.add(root.id);
-    }
+    const isSpouseOfExisting = getSpouseIds(root).some(sid => rootSet.has(sid));
+    if (!isSpouseOfExisting) rootSet.add(root.id);
   }
-  
+
   const rootMembers = members.filter(m => rootSet.has(m.id));
-  
+
   function buildNode(member: FamilyMember, level: number): TreeNode {
     visited.add(member.id);
-    const spouses = member.spouseIds
-      .map(sid => memberMap.get(sid))
-      .filter(Boolean) as FamilyMember[];
+    const spouseIds = getSpouseIds(member);
+    const spouses = spouseIds.map(sid => memberMap.get(sid)).filter(Boolean) as FamilyMember[];
+    const spouseMarriages = spouseIds.map(sid => getMarriage(member, sid) ?? { spouseId: sid, status: 'married' as MarriageStatus });
 
-    // Collect all children (from member + spouses combined)
     const childIds = new Set<string>([...member.childrenIds]);
     for (const spouse of spouses) {
       for (const cid of spouse.childrenIds) childIds.add(cid);
@@ -101,13 +137,11 @@ export function buildTree(members: FamilyMember[], memberMap: Map<string, Family
     for (const childId of childIds) {
       if (!visited.has(childId)) {
         const child = memberMap.get(childId);
-        if (child) {
-          children.push(buildNode(child, level + 1));
-        }
+        if (child) children.push(buildNode(child, level + 1));
       }
     }
 
-    return { member, children, spouses, level };
+    return { member, children, spouses, spouseMarriages, level };
   }
 
   return rootMembers.map(r => buildNode(r, 0));
@@ -122,8 +156,6 @@ export function formatDate(dateStr?: string | null): string {
 export function getAge(birthDate?: string, deathDate?: string | null): string {
   if (!birthDate) return '';
   const birth = new Date(birthDate);
-  const end = deathDate ? new Date(deathDate) : new Date();
-  const age = end.getFullYear() - birth.getFullYear();
   if (deathDate) return `${birth.getFullYear()} — ${new Date(deathDate).getFullYear()}`;
   return `${birth.getFullYear()} — sekarang`;
 }

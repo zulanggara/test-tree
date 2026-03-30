@@ -10,8 +10,11 @@
       "birthPlace": "Surabaya, ID",
       "fatherId": null,
       "motherId": null,
-      "spouseIds": ["m002"],
+      "spouseIds": [],
       "childrenIds": ["m005", "m006", "m007"],
+      "marriages": [
+        { "spouseId": "m002", "status": "widowed", "marriedDate": "1940-05-10", "endDate": "1988-07-20" }
+      ],
       "biography": "Pendiri keluarga Subardjo. Seorang pengusaha sukses dari Surabaya yang merintis bisnis keluarga dari nol."
     },
     {
@@ -24,8 +27,11 @@
       "birthPlace": "Yogyakarta, ID",
       "fatherId": null,
       "motherId": null,
-      "spouseIds": ["m001"],
+      "spouseIds": [],
       "childrenIds": ["m005", "m006", "m007"],
+      "marriages": [
+        { "spouseId": "m001", "status": "widowed", "marriedDate": "1940-05-10", "endDate": "1988-07-20" }
+      ],
       "biography": "Ibu dari keluarga Subardjo. Dikenal sebagai wanita tangguh yang mendidik anak-anaknya dengan penuh kasih sayang."
     },
     {
@@ -38,9 +44,12 @@
       "birthPlace": "Bandung, ID",
       "fatherId": null,
       "motherId": null,
-      "spouseIds": ["m007"],
+      "spouseIds": [],
       "childrenIds": ["m010", "m011"],
-      "biography": "Menantu keluarga Subardjo, seorang guru besar di Universitas Bandung."
+      "marriages": [
+        { "spouseId": "m007", "status": "widowed", "marriedDate": "1972-06-10", "endDate": "2005-02-14" }
+      ],
+      "biography": "Suami pertama Rina Subardjo, seorang guru besar di Universitas Bandung. Wafat tahun 2005."
     },
     {
       "id": "m004",
@@ -52,8 +61,11 @@
       "birthPlace": "Jakarta, ID",
       "fatherId": null,
       "motherId": null,
-      "spouseIds": ["m005"],
+      "spouseIds": [],
       "childrenIds": ["m012", "m013"],
+      "marriages": [
+        { "spouseId": "m005", "status": "married", "marriedDate": "1976-08-20", "endDate": null }
+      ],
       "biography": "Istri Hendra Subardjo, seorang arsitek berpengalaman."
     },
     {
@@ -66,8 +78,11 @@
       "birthPlace": "Jakarta, ID",
       "fatherId": "m001",
       "motherId": "m002",
-      "spouseIds": ["m004"],
+      "spouseIds": [],
       "childrenIds": ["m012", "m013"],
+      "marriages": [
+        { "spouseId": "m004", "status": "married", "marriedDate": "1976-08-20", "endDate": null }
+      ],
       "biography": "Anak pertama Ahmad & Kartini Subardjo. Dikenal atas kontribusinya dalam pelestarian arsip lokal."
     },
     {
@@ -82,7 +97,8 @@
       "motherId": "m002",
       "spouseIds": [],
       "childrenIds": [],
-      "biography": "Anak kedua Ahmad & Kartini. Berdedikasi untuk pendidikan anak-anak kurang mampu."
+      "marriages": [],
+      "biography": "Anak kedua Ahmad & Kartini. Berdedikasi untuk pendidikan anak-anak kurang mampu. Tidak menikah."
     },
     {
       "id": "m007",
@@ -94,9 +110,45 @@
       "birthPlace": "Jakarta, ID",
       "fatherId": "m001",
       "motherId": "m002",
-      "spouseIds": ["m003"],
-      "childrenIds": ["m010", "m011"],
-      "biography": "Anak ketiga Ahmad & Kartini. Pengusaha sukses di bidang fashion."
+      "spouseIds": [],
+      "childrenIds": ["m010", "m011", "m022"],
+      "marriages": [
+        { "spouseId": "m003", "status": "widowed", "marriedDate": "1972-06-10", "endDate": "2005-02-14" },
+        { "spouseId": "m021", "status": "married", "marriedDate": "2007-04-20", "endDate": null }
+      ],
+      "biography": "Anak ketiga Ahmad & Kartini. Pengusaha sukses di bidang fashion. Menikah dua kali — pertama dengan Budi Santoso (wafat 2005), lalu menikah kembali dengan Ahmad Muzaini tahun 2007."
+    },
+    {
+      "id": "m021",
+      "name": "Ahmad Muzaini",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "1955-08-12",
+      "deathDate": null,
+      "birthPlace": "Semarang, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m022"],
+      "marriages": [
+        { "spouseId": "m007", "status": "married", "marriedDate": "2007-04-20", "endDate": null }
+      ],
+      "biography": "Suami kedua Rina Subardjo. Seorang pensiunan TNI dan pengusaha properti di Semarang."
+    },
+    {
+      "id": "m022",
+      "name": "Irma Muzaini",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "2009-03-15",
+      "deathDate": null,
+      "birthPlace": "Jakarta, ID",
+      "fatherId": "m021",
+      "motherId": "m007",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Anak dari pernikahan kedua Rina Subardjo dengan Ahmad Muzaini. Generasi ke-3 dari keluarga Subardjo."
     },
     {
       "id": "m010",
@@ -108,8 +160,11 @@
       "birthPlace": "Bandung, ID",
       "fatherId": "m003",
       "motherId": "m007",
-      "spouseIds": ["m014"],
+      "spouseIds": [],
       "childrenIds": ["m016", "m017"],
+      "marriages": [
+        { "spouseId": "m014", "status": "married", "marriedDate": "2000-10-15", "endDate": null }
+      ],
       "biography": "Cucu Ahmad Subardjo. Dokter spesialis anak di RS Hasan Sadikin Bandung."
     },
     {
@@ -122,9 +177,30 @@
       "birthPlace": "Bandung, ID",
       "fatherId": "m003",
       "motherId": "m007",
-      "spouseIds": ["m015"],
+      "spouseIds": [],
       "childrenIds": ["m018"],
-      "biography": "Cucu Ahmad Subardjo. Pengusaha teknologi startup."
+      "marriages": [
+        { "spouseId": "m015", "status": "divorced", "marriedDate": "2005-03-12", "endDate": "2018-07-30" },
+        { "spouseId": "m023", "status": "married", "marriedDate": "2020-01-15", "endDate": null }
+      ],
+      "biography": "Cucu Ahmad Subardjo. Pengusaha teknologi startup. Pernah bercerai dan menikah kembali tahun 2020."
+    },
+    {
+      "id": "m023",
+      "name": "Yuni Rahayu",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "1985-11-20",
+      "deathDate": null,
+      "birthPlace": "Solo, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [
+        { "spouseId": "m011", "status": "married", "marriedDate": "2020-01-15", "endDate": null }
+      ],
+      "biography": "Istri kedua Reza Santoso. Seorang desainer grafis dan content creator."
     },
     {
       "id": "m012",
@@ -138,6 +214,7 @@
       "motherId": "m004",
       "spouseIds": [],
       "childrenIds": [],
+      "marriages": [],
       "biography": "Cucu Ahmad Subardjo. Seniman dan kurator seni kontemporer."
     },
     {
@@ -150,8 +227,11 @@
       "birthPlace": "Jakarta, ID",
       "fatherId": "m005",
       "motherId": "m004",
-      "spouseIds": ["m019"],
+      "spouseIds": [],
       "childrenIds": ["m020"],
+      "marriages": [
+        { "spouseId": "m019", "status": "married", "marriedDate": "2010-09-25", "endDate": null }
+      ],
       "biography": "Cucu Ahmad Subardjo. Jurnalis investigatif yang meliput isu lingkungan."
     },
     {
@@ -164,8 +244,11 @@
       "birthPlace": "Bandung, ID",
       "fatherId": null,
       "motherId": null,
-      "spouseIds": ["m010"],
+      "spouseIds": [],
       "childrenIds": ["m016", "m017"],
+      "marriages": [
+        { "spouseId": "m010", "status": "married", "marriedDate": "2000-10-15", "endDate": null }
+      ],
       "biography": "Suami Dian Santoso. Insinyur sipil yang membangun berbagai infrastruktur di Jawa Barat."
     },
     {
@@ -178,9 +261,12 @@
       "birthPlace": "Surabaya, ID",
       "fatherId": null,
       "motherId": null,
-      "spouseIds": ["m011"],
+      "spouseIds": [],
       "childrenIds": ["m018"],
-      "biography": "Istri Reza Santoso. Co-founder startup fintech terkemuka."
+      "marriages": [
+        { "spouseId": "m011", "status": "divorced", "marriedDate": "2005-03-12", "endDate": "2018-07-30" }
+      ],
+      "biography": "Mantan istri Reza Santoso. Co-founder startup fintech terkemuka. Bercerai tahun 2018."
     },
     {
       "id": "m016",
@@ -194,6 +280,7 @@
       "motherId": "m010",
       "spouseIds": [],
       "childrenIds": [],
+      "marriages": [],
       "biography": "Generasi ke-4 keluarga Subardjo. Mahasiswi kedokteran mengikuti jejak ibunya."
     },
     {
@@ -208,6 +295,7 @@
       "motherId": "m010",
       "spouseIds": [],
       "childrenIds": [],
+      "marriages": [],
       "biography": "Generasi ke-4 keluarga Subardjo. Siswa SMA berbakat di bidang matematika."
     },
     {
@@ -222,6 +310,7 @@
       "motherId": "m015",
       "spouseIds": [],
       "childrenIds": [],
+      "marriages": [],
       "biography": "Generasi ke-4 keluarga Subardjo. Anak yang cerdas dan suka menggambar."
     },
     {
@@ -234,8 +323,11 @@
       "birthPlace": "Yogyakarta, ID",
       "fatherId": null,
       "motherId": null,
-      "spouseIds": ["m013"],
+      "spouseIds": [],
       "childrenIds": ["m020"],
+      "marriages": [
+        { "spouseId": "m013", "status": "married", "marriedDate": "2010-09-25", "endDate": null }
+      ],
       "biography": "Istri Bima Subardjo. Aktivis lingkungan dan penulis buku alam."
     },
     {
@@ -250,6 +342,7 @@
       "motherId": "m019",
       "spouseIds": [],
       "childrenIds": [],
+      "marriages": [],
       "biography": "Generasi ke-4 keluarga Subardjo. Anak yang energik dan gemar bermain musik."
     }
   ]

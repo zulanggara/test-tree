@@ -197,6 +197,7 @@ export function FamilyTree({ roots, memberMap, highlight, onNodeClick, focusId }
               <TreeNodeComponent
                 member={member}
                 spouses={treeNode.spouses}
+                spouseMarriages={treeNode.spouseMarriages}
                 highlight={memberHighlight}
                 spouseHighlight={(spouse) => getHighlight(spouse.id)}
                 onClick={onNodeClick}
