@@ -168,6 +168,11 @@ body {
   flex-shrink: 0;
 }
 
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+
 /* Zoom transition */
 .tree-zoom-canvas {
   transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
