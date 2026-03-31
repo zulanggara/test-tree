@@ -1,6 +1,40 @@
 {
   "members": [
     {
+      "id": "m024",
+      "name": "Hadi Subardjo",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "1882-06-10",
+      "deathDate": "1960-04-05",
+      "birthPlace": "Surabaya, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m001", "m026"],
+      "marriages": [
+        { "spouseId": "m025", "status": "widowed", "marriedDate": "1908-03-20", "endDate": "1960-04-05" }
+      ],
+      "biography": "Kakek dari keluarga Subardjo. Seorang petani dan pedagang yang berhasil membangun fondasi ekonomi keluarga di Surabaya."
+    },
+    {
+      "id": "m025",
+      "name": "Srimul Subardjo",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "1888-09-14",
+      "deathDate": "1965-11-30",
+      "birthPlace": "Surabaya, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m001", "m026"],
+      "marriages": [
+        { "spouseId": "m024", "status": "widowed", "marriedDate": "1908-03-20", "endDate": "1960-04-05" }
+      ],
+      "biography": "Nenek dari keluarga Subardjo. Wanita bijaksana yang dikenal di kampungnya sebagai dukun beranak dan penjaga tradisi Jawa."
+    },
+    {
       "id": "m001",
       "name": "Ahmad Subardjo",
       "photo": "",
@@ -8,8 +42,8 @@
       "birthDate": "1912-03-15",
       "deathDate": "1988-07-20",
       "birthPlace": "Surabaya, ID",
-      "fatherId": null,
-      "motherId": null,
+      "fatherId": "m024",
+      "motherId": "m025",
       "spouseIds": [],
       "childrenIds": ["m005", "m006", "m007"],
       "marriages": [
@@ -33,6 +67,40 @@
         { "spouseId": "m001", "status": "widowed", "marriedDate": "1940-05-10", "endDate": "1988-07-20" }
       ],
       "biography": "Ibu dari keluarga Subardjo. Dikenal sebagai wanita tangguh yang mendidik anak-anaknya dengan penuh kasih sayang."
+    },
+    {
+      "id": "m026",
+      "name": "Djoko Subardjo",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "1917-08-22",
+      "deathDate": "2000-03-15",
+      "birthPlace": "Surabaya, ID",
+      "fatherId": "m024",
+      "motherId": "m025",
+      "spouseIds": [],
+      "childrenIds": ["m028", "m029"],
+      "marriages": [
+        { "spouseId": "m027", "status": "widowed", "marriedDate": "1945-11-10", "endDate": "2000-03-15" }
+      ],
+      "biography": "Adik kandung Ahmad Subardjo. Mantan tentara pejuang kemerdekaan yang kemudian menjadi pegawai pemerintah di Surabaya."
+    },
+    {
+      "id": "m027",
+      "name": "Endang Lestari",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "1922-12-05",
+      "deathDate": "2010-07-18",
+      "birthPlace": "Malang, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m028", "m029"],
+      "marriages": [
+        { "spouseId": "m026", "status": "widowed", "marriedDate": "1945-11-10", "endDate": "2000-03-15" }
+      ],
+      "biography": "Istri Djoko Subardjo. Seorang guru SD yang mengabdi selama 30 tahun di Surabaya."
     },
     {
       "id": "m003",
@@ -148,7 +216,75 @@
       "spouseIds": [],
       "childrenIds": [],
       "marriages": [],
-      "biography": "Anak dari pernikahan kedua Rina Subardjo dengan Ahmad Muzaini. Generasi ke-3 dari keluarga Subardjo."
+      "biography": "Anak dari pernikahan kedua Rina Subardjo dengan Ahmad Muzaini. Generasi ke-3 dari keluarga Subardjo. Saat ini bersekolah di SMA dan bercita-cita menjadi dokter."
+    },
+    {
+      "id": "m028",
+      "name": "Fajar Subardjo",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "1950-04-17",
+      "deathDate": null,
+      "birthPlace": "Surabaya, ID",
+      "fatherId": "m026",
+      "motherId": "m027",
+      "spouseIds": [],
+      "childrenIds": ["m032", "m033"],
+      "marriages": [
+        { "spouseId": "m030", "status": "married", "marriedDate": "1978-02-14", "endDate": null }
+      ],
+      "biography": "Putra pertama Djoko Subardjo, keponakan Ahmad Subardjo. Seorang pensiunan dokter umum yang berpraktik di Surabaya selama 30 tahun."
+    },
+    {
+      "id": "m029",
+      "name": "Nita Subardjo",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "1953-09-08",
+      "deathDate": null,
+      "birthPlace": "Surabaya, ID",
+      "fatherId": "m026",
+      "motherId": "m027",
+      "spouseIds": [],
+      "childrenIds": ["m034", "m035"],
+      "marriages": [
+        { "spouseId": "m031", "status": "married", "marriedDate": "1981-06-20", "endDate": null }
+      ],
+      "biography": "Putri kedua Djoko Subardjo, keponakan Ahmad Subardjo. Pensiunan guru sejarah SMA yang aktif mengajarkan tradisi Jawa kepada generasi muda."
+    },
+    {
+      "id": "m030",
+      "name": "Dewi Kumalasari",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "1953-07-22",
+      "deathDate": null,
+      "birthPlace": "Surabaya, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m032", "m033"],
+      "marriages": [
+        { "spouseId": "m028", "status": "married", "marriedDate": "1978-02-14", "endDate": null }
+      ],
+      "biography": "Istri Fajar Subardjo. Mantan perawat RSUD Surabaya yang kini aktif di kegiatan posyandu lansia."
+    },
+    {
+      "id": "m031",
+      "name": "Ridwan Hakim",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "1950-11-30",
+      "deathDate": null,
+      "birthPlace": "Gresik, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m034", "m035"],
+      "marriages": [
+        { "spouseId": "m029", "status": "married", "marriedDate": "1981-06-20", "endDate": null }
+      ],
+      "biography": "Suami Nita Subardjo. Pensiunan pegawai Departemen Kehutanan yang gemar bertani di masa tua."
     },
     {
       "id": "m010",
@@ -178,7 +314,7 @@
       "fatherId": "m003",
       "motherId": "m007",
       "spouseIds": [],
-      "childrenIds": ["m018"],
+      "childrenIds": ["m018", "m038"],
       "marriages": [
         { "spouseId": "m015", "status": "divorced", "marriedDate": "2005-03-12", "endDate": "2018-07-30" },
         { "spouseId": "m023", "status": "married", "marriedDate": "2020-01-15", "endDate": null }
@@ -196,11 +332,11 @@
       "fatherId": null,
       "motherId": null,
       "spouseIds": [],
-      "childrenIds": [],
+      "childrenIds": ["m038"],
       "marriages": [
         { "spouseId": "m011", "status": "married", "marriedDate": "2020-01-15", "endDate": null }
       ],
-      "biography": "Istri kedua Reza Santoso. Seorang desainer grafis dan content creator."
+      "biography": "Istri kedua Reza Santoso. Seorang desainer grafis dan content creator berbakat."
     },
     {
       "id": "m012",
@@ -213,9 +349,11 @@
       "fatherId": "m005",
       "motherId": "m004",
       "spouseIds": [],
-      "childrenIds": [],
-      "marriages": [],
-      "biography": "Cucu Ahmad Subardjo. Seniman dan kurator seni kontemporer."
+      "childrenIds": ["m037"],
+      "marriages": [
+        { "spouseId": "m036", "status": "married", "marriedDate": "2012-03-10", "endDate": null }
+      ],
+      "biography": "Cucu Ahmad Subardjo. Seniman dan kurator seni kontemporer. Menikah dengan Rafael Andika dan dikaruniai seorang putri."
     },
     {
       "id": "m013",
@@ -228,7 +366,7 @@
       "fatherId": "m005",
       "motherId": "m004",
       "spouseIds": [],
-      "childrenIds": ["m020"],
+      "childrenIds": ["m020", "m039"],
       "marriages": [
         { "spouseId": "m019", "status": "married", "marriedDate": "2010-09-25", "endDate": null }
       ],
@@ -269,6 +407,89 @@
       "biography": "Mantan istri Reza Santoso. Co-founder startup fintech terkemuka. Bercerai tahun 2018."
     },
     {
+      "id": "m032",
+      "name": "Kevin Subardjo",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "1979-05-10",
+      "deathDate": null,
+      "birthPlace": "Surabaya, ID",
+      "fatherId": "m028",
+      "motherId": "m030",
+      "spouseIds": [],
+      "childrenIds": ["m042", "m043"],
+      "marriages": [
+        { "spouseId": "m040", "status": "married", "marriedDate": "2006-08-17", "endDate": null }
+      ],
+      "biography": "Cucu Djoko Subardjo, generasi ketiga dari cabang Djoko. Pengacara muda yang berpraktik di Surabaya, aktif di bidang hukum keluarga."
+    },
+    {
+      "id": "m033",
+      "name": "Tania Subardjo",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "1982-11-25",
+      "deathDate": null,
+      "birthPlace": "Surabaya, ID",
+      "fatherId": "m028",
+      "motherId": "m030",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [
+        { "spouseId": "m041", "status": "married", "marriedDate": "2010-04-02", "endDate": null }
+      ],
+      "biography": "Cucu Djoko Subardjo. Dokter gigi yang membuka klinik sendiri di Surabaya. Dikenal sebagai sosok hangat dan dermawan di lingkungannya."
+    },
+    {
+      "id": "m034",
+      "name": "Arya Hakim",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "1983-02-14",
+      "deathDate": null,
+      "birthPlace": "Gresik, ID",
+      "fatherId": "m031",
+      "motherId": "m029",
+      "spouseIds": [],
+      "childrenIds": ["m044"],
+      "marriages": [
+        { "spouseId": "m045", "status": "married", "marriedDate": "2012-10-20", "endDate": null }
+      ],
+      "biography": "Putra Nita Subardjo dan Ridwan Hakim. Manajer operasional pabrik tekstil di Gresik, hobi memancing di akhir pekan."
+    },
+    {
+      "id": "m035",
+      "name": "Kirana Hakim",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "1986-07-03",
+      "deathDate": null,
+      "birthPlace": "Surabaya, ID",
+      "fatherId": "m031",
+      "motherId": "m029",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Putri Nita Subardjo dan Ridwan Hakim. Dosen bahasa Inggris di Universitas Airlangga, sedang menempuh program doktoral di bidang linguistik."
+    },
+    {
+      "id": "m036",
+      "name": "Rafael Andika",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "1977-01-30",
+      "deathDate": null,
+      "birthPlace": "Bali, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m037"],
+      "marriages": [
+        { "spouseId": "m012", "status": "married", "marriedDate": "2012-03-10", "endDate": null }
+      ],
+      "biography": "Suami Laras Subardjo. Fotografer seni berkebangsaan Indonesia keturunan Bali yang karyanya telah dipamerkan di berbagai galeri internasional."
+    },
+    {
       "id": "m016",
       "name": "Aurel Pratama",
       "photo": "",
@@ -279,9 +500,11 @@
       "fatherId": "m014",
       "motherId": "m010",
       "spouseIds": [],
-      "childrenIds": [],
-      "marriages": [],
-      "biography": "Generasi ke-4 keluarga Subardjo. Mahasiswi kedokteran mengikuti jejak ibunya."
+      "childrenIds": ["m046"],
+      "marriages": [
+        { "spouseId": "m047", "status": "married", "marriedDate": "2024-06-15", "endDate": null }
+      ],
+      "biography": "Generasi ke-4 keluarga Subardjo. Baru saja menikah di usia muda. Mahasiswi kedokteran yang cerdas, mengikuti jejak ibunya."
     },
     {
       "id": "m017",
@@ -296,7 +519,7 @@
       "spouseIds": [],
       "childrenIds": [],
       "marriages": [],
-      "biography": "Generasi ke-4 keluarga Subardjo. Siswa SMA berbakat di bidang matematika."
+      "biography": "Generasi ke-4 keluarga Subardjo. Siswa SMA berbakat di bidang matematika, berencana melanjutkan studi teknik informatika."
     },
     {
       "id": "m018",
@@ -311,7 +534,7 @@
       "spouseIds": [],
       "childrenIds": [],
       "marriages": [],
-      "biography": "Generasi ke-4 keluarga Subardjo. Anak yang cerdas dan suka menggambar."
+      "biography": "Generasi ke-4 keluarga Subardjo. Anak yang cerdas dan suka menggambar, bercita-cita menjadi ilustrator buku cerita anak."
     },
     {
       "id": "m019",
@@ -324,11 +547,11 @@
       "fatherId": null,
       "motherId": null,
       "spouseIds": [],
-      "childrenIds": ["m020"],
+      "childrenIds": ["m020", "m039"],
       "marriages": [
         { "spouseId": "m013", "status": "married", "marriedDate": "2010-09-25", "endDate": null }
       ],
-      "biography": "Istri Bima Subardjo. Aktivis lingkungan dan penulis buku alam."
+      "biography": "Istri Bima Subardjo. Aktivis lingkungan dan penulis buku alam. Telah menerbitkan tiga buku tentang konservasi hutan Indonesia."
     },
     {
       "id": "m020",
@@ -343,7 +566,180 @@
       "spouseIds": [],
       "childrenIds": [],
       "marriages": [],
-      "biography": "Generasi ke-4 keluarga Subardjo. Anak yang energik dan gemar bermain musik."
+      "biography": "Generasi ke-4 keluarga Subardjo. Anak yang energik dan gemar bermain musik, terutama gitar dan perkusi."
+    },
+    {
+      "id": "m037",
+      "name": "Luna Andika",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "2015-08-12",
+      "deathDate": null,
+      "birthPlace": "Bali, ID",
+      "fatherId": "m036",
+      "motherId": "m012",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Generasi ke-4 keluarga Subardjo dari cabang Hendra. Gadis kreatif yang sudah menunjukkan bakat seni sejak kecil, mengikuti jejak kedua orang tuanya."
+    },
+    {
+      "id": "m038",
+      "name": "Kai Santoso",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "2022-04-05",
+      "deathDate": null,
+      "birthPlace": "Jakarta, ID",
+      "fatherId": "m011",
+      "motherId": "m023",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Generasi ke-4 keluarga Subardjo. Anak bungsu Reza Santoso dari pernikahan kedua dengan Yuni Rahayu. Bayi yang aktif dan penuh energi."
+    },
+    {
+      "id": "m039",
+      "name": "Bumi Subardjo",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "2015-06-05",
+      "deathDate": null,
+      "birthPlace": "Jakarta, ID",
+      "fatherId": "m013",
+      "motherId": "m019",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Generasi ke-4 keluarga Subardjo. Adik Alam Subardjo. Anak yang pendiam namun gemar membaca buku sains dan alam, mewarisi kecintaan ibunya pada lingkungan."
+    },
+    {
+      "id": "m040",
+      "name": "Sinta Permata",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "1981-03-18",
+      "deathDate": null,
+      "birthPlace": "Surabaya, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m042", "m043"],
+      "marriages": [
+        { "spouseId": "m032", "status": "married", "marriedDate": "2006-08-17", "endDate": null }
+      ],
+      "biography": "Istri Kevin Subardjo. Akuntan publik bersertifikat yang bekerja di salah satu firma akuntansi terkemuka di Surabaya."
+    },
+    {
+      "id": "m041",
+      "name": "Denny Saputra",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "1979-09-02",
+      "deathDate": null,
+      "birthPlace": "Sidoarjo, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [
+        { "spouseId": "m033", "status": "married", "marriedDate": "2010-04-02", "endDate": null }
+      ],
+      "biography": "Suami Tania Subardjo. Wirausahawan di bidang kuliner yang memiliki jaringan restoran di Surabaya dan Sidoarjo."
+    },
+    {
+      "id": "m042",
+      "name": "Rafi Subardjo",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "2007-11-14",
+      "deathDate": null,
+      "birthPlace": "Surabaya, ID",
+      "fatherId": "m032",
+      "motherId": "m040",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Generasi ke-4 dari cabang Djoko Subardjo. Remaja berbakat dalam olahraga futsal dan aktif di kegiatan Pramuka sekolah."
+    },
+    {
+      "id": "m043",
+      "name": "Nadia Subardjo",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "2010-03-28",
+      "deathDate": null,
+      "birthPlace": "Surabaya, ID",
+      "fatherId": "m032",
+      "motherId": "m040",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Generasi ke-4 dari cabang Djoko Subardjo. Adik Rafi. Siswi SD yang pandai menari tari tradisional Jawa."
+    },
+    {
+      "id": "m044",
+      "name": "Farrel Hakim",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "2014-08-20",
+      "deathDate": null,
+      "birthPlace": "Gresik, ID",
+      "fatherId": "m034",
+      "motherId": "m045",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Generasi ke-4 dari cabang Djoko Subardjo melalui Nita Hakim. Anak tunggal Arya Hakim yang ceria dan penuh rasa ingin tahu."
+    },
+    {
+      "id": "m045",
+      "name": "Sella Wulandari",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "1986-05-11",
+      "deathDate": null,
+      "birthPlace": "Lamongan, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m044"],
+      "marriages": [
+        { "spouseId": "m034", "status": "married", "marriedDate": "2012-10-20", "endDate": null }
+      ],
+      "biography": "Istri Arya Hakim. Bidan desa yang mengabdi di Puskesmas Gresik dan aktif dalam program kesehatan ibu dan anak."
+    },
+    {
+      "id": "m047",
+      "name": "Rizal Hidayat",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "2001-07-09",
+      "deathDate": null,
+      "birthPlace": "Bandung, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m046"],
+      "marriages": [
+        { "spouseId": "m016", "status": "married", "marriedDate": "2024-06-15", "endDate": null }
+      ],
+      "biography": "Suami Aurel Pratama. Mahasiswa teknik sipil yang juga berbisnis jasa desain interior bersama kakaknya."
+    },
+    {
+      "id": "m046",
+      "name": "Nara Pratama",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "2025-02-10",
+      "deathDate": null,
+      "birthPlace": "Bandung, ID",
+      "fatherId": "m047",
+      "motherId": "m016",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Generasi ke-5 keluarga Subardjo. Bayi mungil Aurel & Rizal. Cucu termuda keluarga Pratama, cicit dari Dian Santoso."
     }
   ]
 }
