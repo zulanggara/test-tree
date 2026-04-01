@@ -15,7 +15,11 @@
       "marriages": [
         { "spouseId": "m025", "status": "widowed", "marriedDate": "1908-03-20", "endDate": "1960-04-05" }
       ],
-      "biography": "Kakek dari keluarga Subardjo. Seorang petani dan pedagang yang berhasil membangun fondasi ekonomi keluarga di Surabaya."
+      "biography": "Kakek dari keluarga Subardjo. Seorang petani dan pedagang yang berhasil membangun fondasi ekonomi keluarga di Surabaya.",
+      "profession": "Petani & Pedagang",
+      "religion": "Islam",
+      "nationality": "Indonesia",
+      "hobbies": ["Bertani", "Berdagang"]
     },
     {
       "id": "m025",
@@ -32,7 +36,12 @@
       "marriages": [
         { "spouseId": "m024", "status": "widowed", "marriedDate": "1908-03-20", "endDate": "1960-04-05" }
       ],
-      "biography": "Nenek dari keluarga Subardjo. Wanita bijaksana yang dikenal di kampungnya sebagai dukun beranak dan penjaga tradisi Jawa."
+      "biography": "Nenek dari keluarga Subardjo. Wanita bijaksana yang dikenal di kampungnya sebagai dukun beranak dan penjaga tradisi Jawa.",
+      "nickname": "Mbah Sri",
+      "profession": "Dukun Beranak",
+      "religion": "Islam",
+      "nationality": "Indonesia",
+      "hobbies": ["Memasak", "Membatik", "Menjaga tradisi Jawa"]
     },
     {
       "id": "m001",
@@ -49,7 +58,13 @@
       "marriages": [
         { "spouseId": "m002", "status": "widowed", "marriedDate": "1940-05-10", "endDate": "1988-07-20" }
       ],
-      "biography": "Pendiri keluarga Subardjo. Seorang pengusaha sukses dari Surabaya yang merintis bisnis keluarga dari nol."
+      "biography": "Pendiri keluarga Subardjo. Seorang pengusaha sukses dari Surabaya yang merintis bisnis keluarga dari nol.",
+      "nickname": "Pak Ahmad",
+      "profession": "Pengusaha",
+      "education": "MULO (setara SMP)",
+      "religion": "Islam",
+      "nationality": "Indonesia",
+      "hobbies": ["Berdagang", "Membaca"]
     },
     {
       "id": "m002",
@@ -66,7 +81,12 @@
       "marriages": [
         { "spouseId": "m001", "status": "widowed", "marriedDate": "1940-05-10", "endDate": "1988-07-20" }
       ],
-      "biography": "Ibu dari keluarga Subardjo. Dikenal sebagai wanita tangguh yang mendidik anak-anaknya dengan penuh kasih sayang."
+      "biography": "Ibu dari keluarga Subardjo. Dikenal sebagai wanita tangguh yang mendidik anak-anaknya dengan penuh kasih sayang.",
+      "nickname": "Bu Tini",
+      "profession": "Ibu Rumah Tangga",
+      "religion": "Islam",
+      "nationality": "Indonesia",
+      "hobbies": ["Memasak", "Berkebun", "Menjahit"]
     },
     {
       "id": "m026",
@@ -83,7 +103,13 @@
       "marriages": [
         { "spouseId": "m027", "status": "widowed", "marriedDate": "1945-11-10", "endDate": "2000-03-15" }
       ],
-      "biography": "Adik kandung Ahmad Subardjo. Mantan tentara pejuang kemerdekaan yang kemudian menjadi pegawai pemerintah di Surabaya."
+      "biography": "Adik kandung Ahmad Subardjo. Mantan tentara pejuang kemerdekaan yang kemudian menjadi pegawai pemerintah di Surabaya.",
+      "nickname": "Pak Djoko",
+      "profession": "Pegawai Pemerintah (Purnawirawan TNI)",
+      "education": "Sekolah Rakyat",
+      "religion": "Islam",
+      "nationality": "Indonesia",
+      "hobbies": ["Berkebun", "Bermain catur"]
     },
     {
       "id": "m027",
@@ -100,7 +126,12 @@
       "marriages": [
         { "spouseId": "m026", "status": "widowed", "marriedDate": "1945-11-10", "endDate": "2000-03-15" }
       ],
-      "biography": "Istri Djoko Subardjo. Seorang guru SD yang mengabdi selama 30 tahun di Surabaya."
+      "biography": "Istri Djoko Subardjo. Seorang guru SD yang mengabdi selama 30 tahun di Surabaya.",
+      "profession": "Guru Sekolah Dasar (Pensiunan)",
+      "education": "SPG (Sekolah Pendidikan Guru)",
+      "religion": "Islam",
+      "nationality": "Indonesia",
+      "hobbies": ["Mengajar", "Membaca", "Memasak"]
     },
     {
       "id": "m003",
@@ -117,7 +148,12 @@
       "marriages": [
         { "spouseId": "m007", "status": "widowed", "marriedDate": "1972-06-10", "endDate": "2005-02-14" }
       ],
-      "biography": "Suami pertama Rina Subardjo, seorang guru besar di Universitas Bandung. Wafat tahun 2005."
+      "biography": "Suami pertama Rina Subardjo, seorang guru besar di Universitas Bandung. Wafat tahun 2005.",
+      "profession": "Guru Besar (Profesor)",
+      "education": "S3 Ilmu Pendidikan, Universitas Indonesia",
+      "religion": "Islam",
+      "nationality": "Indonesia",
+      "hobbies": ["Penelitian", "Menulis buku", "Fotografi"]
     },
     {
       "id": "m004",
@@ -134,7 +170,12 @@
       "marriages": [
         { "spouseId": "m005", "status": "married", "marriedDate": "1976-08-20", "endDate": null }
       ],
-      "biography": "Istri Hendra Subardjo, seorang arsitek berpengalaman."
+      "biography": "Istri Hendra Subardjo, seorang arsitek berpengalaman.",
+      "profession": "Arsitek",
+      "education": "S1 Arsitektur, ITB",
+      "religion": "Islam",
+      "nationality": "Indonesia",
+      "hobbies": ["Mendesain rumah", "Melukis", "Travelling"]
     },
     {
       "id": "m005",
@@ -151,7 +192,13 @@
       "marriages": [
         { "spouseId": "m004", "status": "married", "marriedDate": "1976-08-20", "endDate": null }
       ],
-      "biography": "Anak pertama Ahmad & Kartini Subardjo. Dikenal atas kontribusinya dalam pelestarian arsip lokal."
+      "biography": "Anak pertama Ahmad & Kartini Subardjo. Dikenal atas kontribusinya dalam pelestarian arsip lokal.",
+      "nickname": "Pak Hendra",
+      "profession": "Pengusaha & Filantrop",
+      "education": "S1 Ekonomi, Universitas Indonesia",
+      "religion": "Islam",
+      "nationality": "Indonesia",
+      "hobbies": ["Membaca sejarah", "Golf", "Pelestarian arsip"]
     },
     {
       "id": "m006",
@@ -166,7 +213,13 @@
       "spouseIds": [],
       "childrenIds": [],
       "marriages": [],
-      "biography": "Anak kedua Ahmad & Kartini. Berdedikasi untuk pendidikan anak-anak kurang mampu. Tidak menikah."
+      "biography": "Anak kedua Ahmad & Kartini. Berdedikasi untuk pendidikan anak-anak kurang mampu. Tidak menikah.",
+      "nickname": "Bu Siti",
+      "profession": "Guru & Aktivis Sosial",
+      "education": "S1 Pendidikan, IKIP Jakarta",
+      "religion": "Islam",
+      "nationality": "Indonesia",
+      "hobbies": ["Mengajar", "Membaca", "Melukis"]
     },
     {
       "id": "m007",
@@ -520,8 +573,10 @@
       "motherId": "m010",
       "spouseIds": [],
       "childrenIds": [],
-      "marriages": [],
-      "biography": "Generasi ke-4 keluarga Subardjo. Siswa SMA berbakat di bidang matematika, berencana melanjutkan studi teknik informatika."
+      "marriages": [
+        { "spouseId": "m062", "status": "married", "marriedDate": "2025-08-17", "endDate": null }
+      ],
+      "biography": "Generasi ke-4 keluarga Subardjo. Mahasiswa teknik informatika yang cerdas dan berbakat. Menikah dengan Nola Dimitrov pada 2025, menjadi jembatan antara keluarga Subardjo dan Dimitrov."
     },
     {
       "id": "m018",
@@ -986,8 +1041,10 @@
       "motherId": "m058",
       "spouseIds": [],
       "childrenIds": [],
-      "marriages": [],
-      "biography": "Cucu Keanu & Irma Dimitrov. Mahasiswi hubungan internasional yang fasih berbahasa Indonesia, Inggris, dan Bulgaria. Bercita-cita menjadi diplomat."
+      "marriages": [
+        { "spouseId": "m017", "status": "married", "marriedDate": "2025-08-17", "endDate": null }
+      ],
+      "biography": "Cucu Keanu & Irma Dimitrov. Lulusan hubungan internasional yang fasih berbahasa Indonesia, Inggris, dan Bulgaria. Berkarir di Kementerian Luar Negeri. Menikah dengan Bagas Pratama dari keluarga Subardjo pada 2025, menyatukan dua keluarga besar."
     },
     {
       "id": "m063",

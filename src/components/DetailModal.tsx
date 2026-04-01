@@ -1,10 +1,12 @@
 'use client';
 
-import { useRef } from 'react';
 import { FamilyMember, Marriage } from '@/types';
 import { formatDate, getAge, getAvatarUrl, getMarriage, getSpouseIds,
          getMarriageStatusLabel, getMarriageStatusColor, isActiveMarriage } from '@/lib/family';
-import { usePhoto } from '@/contexts/PhotoContext';
+import { InfoCard } from '@/components/ui/InfoCard';
+import { SectionLabel } from '@/components/ui/SectionLabel';
+import { RelationChip } from '@/components/ui/RelationChip';
+import { Avatar } from '@/components/ui/Avatar';
 
 interface DetailModalProps {
   member: FamilyMember;
@@ -14,17 +16,12 @@ interface DetailModalProps {
 }
 
 export function DetailModal({ member, memberMap, onClose, onNavigate }: DetailModalProps) {
-  const { getPhoto, uploadPhoto, removePhoto } = usePhoto();
-  const fileInputRef = useRef<HTMLInputElement>(null);
   const father = member.fatherId ? memberMap.get(member.fatherId) : null;
   const mother = member.motherId ? memberMap.get(member.motherId) : null;
   const spouseIds = getSpouseIds(member);
   const spouses = spouseIds.map(id => memberMap.get(id)).filter(Boolean) as FamilyMember[];
   const children = member.childrenIds.map(id => memberMap.get(id)).filter(Boolean) as FamilyMember[];
-  const isAlive = !member.deathDate;
-  const customPhoto = getPhoto(member.id, '');
 
-  // Sort marriages: active first, then by endDate desc
   const sortedMarriages = member.marriages
     ? [...member.marriages].sort((a, b) => {
         if (isActiveMarriage(a) && !isActiveMarriage(b)) return -1;
@@ -62,75 +59,25 @@ export function DetailModal({ member, memberMap, onClose, onNavigate }: DetailMo
 
             {/* Avatar + Name */}
             <div className="flex items-start gap-4 mb-5">
-              <div className="relative shrink-0 group/avatar">
-                <div className="w-20 h-20 rounded-full overflow-hidden"
-                  style={{ border: '3px solid var(--accent)' }}>
-                  <img src={getPhoto(member.id, getAvatarUrl(member))} alt={member.name}
-                    className="w-full h-full object-cover"
-                    onError={e => {
-                      (e.target as HTMLImageElement).src =
-                        `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(member.name)}`;
-                    }} />
-                </div>
-                {/* Photo upload overlay */}
-                <button
-                  onClick={() => fileInputRef.current?.click()}
-                  className="absolute inset-0 rounded-full flex items-center justify-center opacity-0 group-hover/avatar:opacity-100 transition-opacity"
-                  style={{ background: 'rgba(0,0,0,0.55)' }}
-                  title="Ganti foto"
-                >
-                  <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                </button>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*"
-                  className="hidden"
-                  onChange={e => {
-                    const file = e.target.files?.[0];
-                    if (file) uploadPhoto(member.id, file);
-                    e.target.value = '';
-                  }}
-                />
-                {isAlive && (
-                  <span className="absolute w-4 h-4 rounded-full bg-green-500 border-2"
-                    style={{ borderColor: 'var(--card)', bottom: -2, right: -2 }} />
-                )}
-                {!isAlive && (
-                  <span className="absolute w-5 h-5 rounded-full bg-gray-700 border-2 flex items-center justify-center"
-                    style={{ borderColor: 'var(--card)', bottom: -2, right: -2, fontSize: 10, color: '#9ca3af' }}>✝</span>
-                )}
+              <div className="pb-5">
+                <Avatar member={member} size={80} showStatusDot allowUpload />
               </div>
               <div className="flex-1 min-w-0 pt-1">
-                <h2 className="font-display text-xl font-semibold text-[var(--text)] leading-tight mb-1">
+                <h2 className="font-display text-xl font-semibold text-[var(--text)] leading-tight mb-0.5">
                   {member.name}
                 </h2>
+                {member.nickname && (
+                  <p className="text-xs text-[var(--text-subtle)] mb-0.5">"{member.nickname}"</p>
+                )}
                 <p className="text-xs text-[var(--text-subtle)]">{getAge(member.birthDate, member.deathDate)}</p>
                 <p className="text-xs text-[var(--text-subtle)] mt-0.5">
                   {member.gender === 'male' ? 'Laki-laki' : 'Perempuan'}
-                  {!isAlive && ' · Almarhum/Almarhumah'}
+                  {!member.deathDate ? '' : ' · Almarhum/Almarhumah'}
                 </p>
-                {customPhoto && (
-                  <button
-                    onClick={() => removePhoto(member.id)}
-                    className="mt-1.5 text-[10px] flex items-center gap-1 transition-colors"
-                    style={{ color: 'var(--text-subtle)' }}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#ef4444')}
-                    onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-subtle)')}
-                  >
-                    <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                    Hapus foto
-                  </button>
-                )}
               </div>
             </div>
 
-            {/* Info grid */}
+            {/* Core info grid */}
             <div className="grid grid-cols-2 gap-3 mb-4">
               {member.birthDate && (
                 <InfoCard label="Tanggal Lahir" value={formatDate(member.birthDate)} />
@@ -141,45 +88,90 @@ export function DetailModal({ member, memberMap, onClose, onNavigate }: DetailMo
               {member.deathDate && (
                 <InfoCard label="Tanggal Wafat" value={formatDate(member.deathDate)} />
               )}
+              {member.profession && (
+                <InfoCard label="Profesi Terakhir" value={member.profession} />
+              )}
+              {member.education && (
+                <InfoCard label="Pendidikan Terakhir" value={member.education} />
+              )}
+              {member.religion && (
+                <InfoCard label="Agama" value={member.religion} />
+              )}
+              {member.nationality && (
+                <InfoCard label="Kewarganegaraan" value={member.nationality} />
+              )}
             </div>
+
+            {/* Hobbies */}
+            {member.hobbies && member.hobbies.length > 0 && (
+              <div className="mb-4 rounded-lg p-3" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
+                <SectionLabel>Hobi</SectionLabel>
+                <div className="flex flex-wrap gap-1.5">
+                  {member.hobbies.map(hobby => (
+                    <span
+                      key={hobby}
+                      className="text-xs px-2 py-0.5 rounded-full"
+                      style={{ background: 'var(--accent-dim)', color: 'var(--accent)', border: '1px solid var(--accent)' }}
+                    >
+                      {hobby}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Biography */}
             {member.biography && (
               <div className="mb-4 rounded-lg p-3" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
-                <p className="text-[10px] uppercase tracking-wider text-[var(--text-subtle)] mb-2">Biografi</p>
+                <SectionLabel>Biografi</SectionLabel>
                 <p className="text-sm text-[var(--text-muted)] leading-relaxed">{member.biography}</p>
               </div>
             )}
 
-            {/* Riwayat Pernikahan */}
+            {/* Social links */}
+            {member.socialLinks && member.socialLinks.length > 0 && (
+              <div className="mb-4 rounded-lg p-3" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
+                <SectionLabel>Tautan</SectionLabel>
+                <div className="flex flex-wrap gap-2">
+                  {member.socialLinks.map(link => (
+                    <a
+                      key={link.url}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs px-2.5 py-1 rounded-lg transition-opacity hover:opacity-80"
+                      style={{ background: 'var(--accent-dim)', color: 'var(--accent)', border: '1px solid var(--accent)' }}
+                    >
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Marriage history */}
             {sortedMarriages && sortedMarriages.length > 0 && (
               <div className="mb-4">
-                <p className="text-[10px] uppercase tracking-wider text-[var(--text-subtle)] mb-2">
-                  Riwayat Pernikahan ({sortedMarriages.length})
-                </p>
+                <SectionLabel>Riwayat Pernikahan ({sortedMarriages.length})</SectionLabel>
                 <div className="space-y-2">
-                  {sortedMarriages.map((m, idx) => {
-                    const spouse = memberMap.get(m.spouseId);
-                    return (
-                      <MarriageCard
-                        key={m.spouseId}
-                        marriage={m}
-                        spouse={spouse}
-                        index={idx + 1}
-                        onNavigate={onNavigate}
-                      />
-                    );
-                  })}
+                  {sortedMarriages.map((m, idx) => (
+                    <MarriageCard
+                      key={m.spouseId}
+                      marriage={m}
+                      spouse={memberMap.get(m.spouseId)}
+                      index={idx + 1}
+                      onNavigate={onNavigate}
+                    />
+                  ))}
                 </div>
               </div>
             )}
 
             {/* Relations */}
             <div className="space-y-3">
-              {/* Parents */}
               {(father || mother) && (
                 <div>
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-subtle)] mb-2">Orang Tua</p>
+                  <SectionLabel>Orang Tua</SectionLabel>
                   <div className="flex flex-wrap gap-2">
                     {father && <RelationChip member={father} label="Ayah" color="blue" onNavigate={onNavigate} />}
                     {mother && <RelationChip member={mother} label="Ibu" color="pink" onNavigate={onNavigate} />}
@@ -190,9 +182,7 @@ export function DetailModal({ member, memberMap, onClose, onNavigate }: DetailMo
               {/* Spouses (legacy) — only show if no marriages array */}
               {!member.marriages && spouses.length > 0 && (
                 <div>
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-subtle)] mb-2">
-                    Pasangan ({spouses.length})
-                  </p>
+                  <SectionLabel>Pasangan ({spouses.length})</SectionLabel>
                   <div className="flex flex-wrap gap-2">
                     {spouses.map(s => (
                       <RelationChip key={s.id} member={s} label="Pasangan" color="purple" onNavigate={onNavigate} />
@@ -201,12 +191,9 @@ export function DetailModal({ member, memberMap, onClose, onNavigate }: DetailMo
                 </div>
               )}
 
-              {/* Children */}
               {children.length > 0 && (
                 <div>
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-subtle)] mb-2">
-                    Anak-anak ({children.length})
-                  </p>
+                  <SectionLabel>Anak-anak ({children.length})</SectionLabel>
                   <div className="flex flex-wrap gap-2">
                     {children.map(c => (
                       <RelationChip key={c.id} member={c} label="Anak" color="green" onNavigate={onNavigate} />
@@ -222,17 +209,8 @@ export function DetailModal({ member, memberMap, onClose, onNavigate }: DetailMo
   );
 }
 
-function InfoCard({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="rounded-lg p-3" style={{ background: 'var(--bg)', border: '1px solid var(--border)' }}>
-      <p className="text-[10px] uppercase tracking-wider text-[var(--text-subtle)] mb-1">{label}</p>
-      <p className="text-sm font-medium text-[var(--text)]">{value}</p>
-    </div>
-  );
-}
-
 function MarriageCard({
-  marriage, spouse, index, onNavigate
+  marriage, spouse, index, onNavigate,
 }: {
   marriage: Marriage;
   spouse?: FamilyMember;
@@ -248,12 +226,14 @@ function MarriageCard({
   };
 
   return (
-    <div className="rounded-lg p-3 transition-all"
+    <div
+      className="rounded-lg p-3 transition-all"
       style={{
         background: 'var(--bg)',
         border: `1px solid ${active ? 'rgba(108,99,255,0.3)' : 'var(--border)'}`,
         opacity: active ? 1 : 0.75,
-      }}>
+      }}
+    >
       <div className="flex items-center justify-between mb-2">
         <span className="text-[10px] uppercase tracking-wider text-[var(--text-subtle)]">
           Pernikahan ke-{index}
@@ -270,9 +250,15 @@ function MarriageCard({
         >
           <div className="w-7 h-7 rounded-full overflow-hidden shrink-0"
             style={{ border: '1.5px solid var(--border-light)' }}>
-            <img src={getAvatarUrl(spouse)} alt={spouse.name}
+            <img
+              src={getAvatarUrl(spouse)}
+              alt={spouse.name}
               className="w-full h-full object-cover"
-              onError={e => { (e.target as HTMLImageElement).src = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(spouse.name)}`; }} />
+              onError={e => {
+                (e.target as HTMLImageElement).src =
+                  `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(spouse.name)}`;
+              }}
+            />
           </div>
           <div>
             <p className="text-sm font-medium text-[var(--text)]">{spouse.name}</p>
@@ -284,39 +270,9 @@ function MarriageCard({
       )}
 
       <div className="flex gap-3 text-[10px] text-[var(--text-subtle)]">
-        {marriage.marriedDate && (
-          <span>Menikah: {formatDate(marriage.marriedDate)}</span>
-        )}
-        {marriage.endDate && (
-          <span>· Berakhir: {formatDate(marriage.endDate)}</span>
-        )}
+        {marriage.marriedDate && <span>Menikah: {formatDate(marriage.marriedDate)}</span>}
+        {marriage.endDate && <span>· Berakhir: {formatDate(marriage.endDate)}</span>}
       </div>
     </div>
-  );
-}
-
-function RelationChip({
-  member, label, color, onNavigate
-}: {
-  member: FamilyMember;
-  label: string;
-  color: 'blue' | 'pink' | 'purple' | 'green';
-  onNavigate: (id: string) => void;
-}) {
-  const colorMap = {
-    blue: 'bg-blue-500/10 border-blue-500/30 text-blue-400',
-    pink: 'bg-pink-500/10 border-pink-500/30 text-pink-400',
-    purple: 'bg-purple-500/10 border-purple-500/30 text-purple-400',
-    green: 'bg-green-500/10 border-green-500/30 text-green-400',
-  };
-  return (
-    <button
-      onClick={() => onNavigate(member.id)}
-      className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border text-xs font-medium
-                  transition-all hover:scale-105 hover:brightness-125 ${colorMap[color]}`}
-    >
-      <span className="w-1.5 h-1.5 rounded-full bg-current opacity-80" />
-      {member.name}
-    </button>
   );
 }

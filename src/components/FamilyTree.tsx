@@ -8,7 +8,7 @@ import { usePhoto } from '@/contexts/PhotoContext';
 // ─── Constants ────────────────────────────────────────────────────────────────
 const NODE_W = 90;
 const AVATAR = 72;
-const SIBLING_GAP = 52;
+const SIBLING_GAP = 70;
 const LEVEL_H = 220;
 const PADDING = 80;
 const COUPLE_CONNECTOR = 32;
@@ -33,6 +33,11 @@ interface Connection {
   isDirect: boolean;
   isHighlighted: boolean;
   highlightColor: string;
+}
+
+interface CrossConnection {
+  x1: number; y1: number;
+  x2: number; y2: number;
 }
 
 // ─── Layout engine ────────────────────────────────────────────────────────────
@@ -72,8 +77,11 @@ function buildLayout(roots: TreeNode[]): {
       const childrenTotalW = node.children.reduce(
         (s, c) => s + subtreeWidth(c) + SIBLING_GAP, -SIBLING_GAP
       );
-      // Center anak di bawah midpoint pasangan
-      let childX = childAnchorCX - childrenTotalW / 2;
+      // Center children under the midpoint of the full allocated subtree width.
+      // Using childAnchorCX (couple midpoint, offset from x) causes children to
+      // overflow the allocated space and overlap with siblings.
+      const layoutCenterX = x + subtreeWidth(node) / 2;
+      let childX = layoutCenterX - childrenTotalW / 2;
       for (const child of node.children) {
         const w = subtreeWidth(child);
         place(child, childX, y + LEVEL_H);
@@ -139,6 +147,29 @@ function buildConnections(
     }
   }
   return conns;
+}
+
+// Detect pairs where both spouses appear as primary layout nodes (cross-family marriages).
+function buildCrossConnections(layouts: Map<string, LayoutNode>): CrossConnection[] {
+  const seen = new Set<string>();
+  const result: CrossConnection[] = [];
+  for (const [id, layout] of layouts) {
+    for (const spouse of layout.treeNode.spouses) {
+      const key = [id, spouse.id].sort().join('-');
+      if (seen.has(key)) continue;
+      if (layouts.has(spouse.id)) {
+        seen.add(key);
+        const sl = layouts.get(spouse.id)!;
+        result.push({
+          x1: layout.avatarCX,
+          y1: layout.y + AVATAR / 2,
+          x2: sl.avatarCX,
+          y2: sl.y + AVATAR / 2,
+        });
+      }
+    }
+  }
+  return result;
 }
 
 function connPath(conn: Connection): string {
@@ -530,6 +561,7 @@ export function FamilyTree({
   };
 
   const connections = layout ? buildConnections(layout.layouts, highlight) : [];
+  const crossConnections = layout ? buildCrossConnections(layout.layouts) : [];
 
   if (!layout) return (
     <div className="flex items-center justify-center h-64 text-[var(--text-subtle)]">
@@ -606,6 +638,19 @@ export function FamilyTree({
         onMouseLeave={() => { mmDragRef.current = null; }}
       >
         <svg width={MINIMAP_W} height={MINIMAP_H} style={{ display: 'block' }}>
+          {/* Connection lines */}
+          {connections.map((conn, i) => (
+            <line
+              key={i}
+              x1={conn.fromX * mmScaleX}
+              y1={conn.fromY * mmScaleY}
+              x2={conn.toX * mmScaleX}
+              y2={conn.toY * mmScaleY}
+              stroke={conn.isHighlighted ? conn.highlightColor : 'var(--border-light)'}
+              strokeWidth={0.6}
+              opacity={conn.isHighlighted ? 0.8 : 0.4}
+            />
+          ))}
           {[...layout.layouts.values()].map(({ treeNode, avatarCX, y }) => (
             <circle
               key={treeNode.member.id}
@@ -671,6 +716,22 @@ export function FamilyTree({
                   strokeLinecap="round"
                   opacity={dimmed ? 0.25 : 1}
                   style={{ transition: 'stroke 0.3s, stroke-width 0.3s, opacity 0.3s' }}
+                />
+              );
+            })}
+            {crossConnections.map((cc, i) => {
+              const mx = (cc.x1 + cc.x2) / 2;
+              const my = (cc.y1 + cc.y2) / 2 - 60;
+              return (
+                <path
+                  key={`cross-${i}`}
+                  d={`M ${cc.x1} ${cc.y1} Q ${mx} ${my}, ${cc.x2} ${cc.y2}`}
+                  fill="none"
+                  stroke="var(--accent)"
+                  strokeWidth={1.5}
+                  strokeDasharray="6 4"
+                  strokeLinecap="round"
+                  opacity={0.6}
                 />
               );
             })}

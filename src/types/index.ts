@@ -21,6 +21,14 @@ export interface FamilyMember {
   childrenIds: string[];
   marriages?: Marriage[];
   biography?: string;
+  // Optional extended profile fields
+  nickname?: string;
+  profession?: string;
+  education?: string;
+  religion?: string;
+  nationality?: string;
+  hobbies?: string[];
+  socialLinks?: { label: string; url: string }[];
 }
 
 export interface FamilyData {

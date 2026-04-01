@@ -130,8 +130,13 @@ export function buildTree(members: FamilyMember[], memberMap: Map<string, Family
     visited.add(member.id);
     const spouseIds = getSpouseIds(member);
 
-    // Mark all spouses as visited so they don't become separate roots
-    for (const sid of spouseIds) visited.add(sid);
+    // Only claim external spouses (no parents of their own) as visited.
+    // Spouses who have parents belong to their own family subtree and should
+    // remain visitable there — so we leave them unmarked here.
+    for (const sid of spouseIds) {
+      const sp = memberMap.get(sid);
+      if (!sp?.fatherId && !sp?.motherId) visited.add(sid);
+    }
 
     const spouses = spouseIds.map(sid => memberMap.get(sid)).filter(Boolean) as FamilyMember[];
     const spouseMarriages = spouseIds.map(sid => getMarriage(member, sid) ?? { spouseId: sid, status: 'married' as MarriageStatus });
