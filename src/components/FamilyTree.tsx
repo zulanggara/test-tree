@@ -1,16 +1,16 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import { FamilyMember, TreeNode, HighlightState, Marriage, MarriageStatus } from '@/types';
+import { FamilyMember, TreeNode, HighlightState, MarriageStatus } from '@/types';
 import { getAge, getAvatarUrl, isActiveMarriage, getMarriageStatusLabel, getMarriageStatusColor } from '@/lib/family';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 const NODE_W = 90;
 const AVATAR = 72;
-const SIBLING_GAP = 32;
-const LEVEL_H = 180;
+const SIBLING_GAP = 52;
+const LEVEL_H = 220;
 const PADDING = 80;
-const COUPLE_CONNECTOR = 28;
+const COUPLE_CONNECTOR = 32;
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type HighlightType = 'self' | 'green' | 'blue' | 'dimmed' | 'none';
@@ -20,6 +20,7 @@ interface LayoutNode {
   x: number;
   y: number;
   avatarCX: number;
+  childAnchorCX: number; // midpoint pasangan, untuk centering anak & koneksi ke bawah
   branchY: number;
 }
 
@@ -35,7 +36,9 @@ interface Connection {
 
 // ─── Layout engine ────────────────────────────────────────────────────────────
 function nodeUnitWidth(node: TreeNode): number {
-  return NODE_W + node.spouses.length * (NODE_W + COUPLE_CONNECTOR);
+  // Tampilkan 1 pasangan inline (aktif maupun tidak) agar tidak ada yang hilang dari pohon
+  const hasSpouse = node.spouseMarriages.length > 0;
+  return NODE_W + (hasSpouse ? NODE_W + COUPLE_CONNECTOR : 0);
 }
 
 function subtreeWidth(node: TreeNode): number {
@@ -55,13 +58,21 @@ function buildLayout(roots: TreeNode[]): {
 
   function place(node: TreeNode, x: number, y: number) {
     const avatarCX = x + AVATAR / 2;
-    layouts.set(node.member.id, { treeNode: node, x, y, avatarCX, branchY: y + AVATAR + 20 });
+
+    // Midpoint antara dua pasangan → titik anchor koneksi ke anak
+    // Gunakan semua pasangan (aktif maupun tidak) agar layout konsisten
+    const hasSpouseDisplay = node.spouseMarriages.length > 0;
+    const spouseCX = x + NODE_W + COUPLE_CONNECTOR + AVATAR / 2;
+    const childAnchorCX = hasSpouseDisplay ? (avatarCX + spouseCX) / 2 : avatarCX;
+
+    layouts.set(node.member.id, { treeNode: node, x, y, avatarCX, childAnchorCX, branchY: y + AVATAR + 20 });
 
     if (node.children.length > 0) {
       const childrenTotalW = node.children.reduce(
         (s, c) => s + subtreeWidth(c) + SIBLING_GAP, -SIBLING_GAP
       );
-      let childX = avatarCX - childrenTotalW / 2;
+      // Center anak di bawah midpoint pasangan
+      let childX = childAnchorCX - childrenTotalW / 2;
       for (const child of node.children) {
         const w = subtreeWidth(child);
         place(child, childX, y + LEVEL_H);
@@ -80,7 +91,11 @@ function buildLayout(roots: TreeNode[]): {
   for (const l of layouts.values()) minX = Math.min(minX, l.x);
   const shift = minX < PADDING ? PADDING - minX : 0;
   if (shift > 0) {
-    for (const l of layouts.values()) { l.x += shift; l.avatarCX += shift; }
+    for (const l of layouts.values()) {
+      l.x += shift;
+      l.avatarCX += shift;
+      l.childAnchorCX += shift;
+    }
   }
 
   let maxX = 0, maxY = 0;
@@ -99,8 +114,8 @@ function buildConnections(
 ): Connection[] {
   const conns: Connection[] = [];
   for (const [parentId, layout] of layouts) {
-    const { treeNode, avatarCX, y } = layout;
-    const fromX = avatarCX;
+    const { treeNode, childAnchorCX, y } = layout;
+    const fromX = childAnchorCX; // keluar dari midpoint pasangan, bukan hanya primary
     const fromY = y + AVATAR;
 
     for (const child of treeNode.children) {
@@ -238,20 +253,26 @@ function NodeAvatar({
 
 // ─── TreeNodeRow ──────────────────────────────────────────────────────────────
 function TreeNodeRow({
-  treeNode, highlight, onClick, onDoubleClick, nodeRef, memberMap, onShowSpouses,
+  treeNode, highlight, onClick, onDoubleClick, nodeRef, onShowSpouses,
 }: {
   treeNode: TreeNode;
   highlight: HighlightState | null;
   onClick: (m: FamilyMember) => void;
   onDoubleClick: (m: FamilyMember) => void;
   nodeRef: (el: HTMLDivElement | null) => void;
-  memberMap: Map<string, FamilyMember>;
   onShowSpouses: (m: FamilyMember) => void;
 }) {
   const { member, spouses, spouseMarriages } = treeNode;
   const memberHL = getHL(member.id, highlight);
-  const activeSpouseIdx = spouseMarriages.findIndex(m => isActiveMarriage(m));
   const hasMultipleMarriages = spouseMarriages.length > 1;
+
+  // Tampilkan pasangan aktif dulu; jika tidak ada, tampilkan pasangan pertama (widowed/divorced)
+  // sehingga tidak ada anggota yang hilang dari pohon silsilah
+  const displaySpouseIdx = (() => {
+    const activeIdx = spouseMarriages.findIndex(m => isActiveMarriage(m));
+    if (activeIdx >= 0) return activeIdx;
+    return spouseMarriages.length > 0 ? 0 : -1;
+  })();
 
   return (
     <div className="flex items-start">
@@ -263,17 +284,20 @@ function TreeNodeRow({
         nodeRef={nodeRef}
       />
 
-      {activeSpouseIdx >= 0 && spouses[activeSpouseIdx] && (() => {
-        const spouse = spouses[activeSpouseIdx];
-        const marriage = spouseMarriages[activeSpouseIdx];
+      {displaySpouseIdx >= 0 && spouses[displaySpouseIdx] && (() => {
+        const spouse = spouses[displaySpouseIdx];
+        const marriage = spouseMarriages[displaySpouseIdx];
         const status = marriage?.status ?? 'married';
+        const isActive = isActiveMarriage(marriage);
         const color = STATUS_COLOR[status];
         const icon = STATUS_ICON[status];
         return (
           <div className="flex items-start">
             <div style={{ width: COUPLE_CONNECTOR, paddingTop: AVATAR / 2 - 8 }}>
               <svg width={COUPLE_CONNECTOR} height="16" viewBox={`0 0 ${COUPLE_CONNECTOR} 16`}>
-                <line x1="0" y1="8" x2={COUPLE_CONNECTOR} y2="8" stroke={color} strokeWidth="1.5" />
+                <line x1="0" y1="8" x2={COUPLE_CONNECTOR} y2="8"
+                  stroke={color} strokeWidth="1.5"
+                  strokeDasharray={isActive ? undefined : '4 2'} />
                 <text x={COUPLE_CONNECTOR / 2} y="14" textAnchor="middle"
                   fontSize="8" fill={color} fontFamily="system-ui">{icon}</text>
               </svg>
@@ -283,6 +307,7 @@ function TreeNodeRow({
               highlight={getHL(spouse.id, highlight)}
               onClick={() => onClick(spouse)}
               onDoubleClick={() => onDoubleClick(spouse)}
+              faded={!isActive}
             />
           </div>
         );
@@ -432,11 +457,12 @@ interface FamilyTreeProps {
   highlight: HighlightState | null;
   onNodeClick: (member: FamilyMember) => void;
   onNodeDoubleClick: (member: FamilyMember) => void;
+  onClearHighlight: () => void;
   focusId: string | null;
 }
 
 export function FamilyTree({
-  roots, memberMap, highlight, onNodeClick, onNodeDoubleClick, focusId,
+  roots, memberMap, highlight, onNodeClick, onNodeDoubleClick, onClearHighlight, focusId,
 }: FamilyTreeProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef<Map<string, HTMLDivElement>>(new Map());
@@ -495,7 +521,11 @@ export function FamilyTree({
 
       {/* Scrollable canvas */}
       <div ref={scrollRef} className="tree-scroll-container flex-1"
-        style={{ overflow: 'auto', position: 'relative' }}>
+        style={{ overflow: 'auto', position: 'relative' }}
+        onDoubleClick={(e) => {
+          if ((e.target as HTMLElement).closest('.tree-node')) return;
+          onClearHighlight();
+        }}>
         <div
           className="tree-zoom-canvas"
           style={{
@@ -520,7 +550,7 @@ export function FamilyTree({
                   stroke={conn.isHighlighted ? conn.highlightColor : 'var(--connector)'}
                   strokeWidth={conn.isHighlighted ? 3 : 1.5}
                   strokeLinecap="round"
-                  opacity={dimmed ? 0.1 : 1}
+                  opacity={dimmed ? 0.25 : 1}
                   style={{ transition: 'stroke 0.3s, stroke-width 0.3s, opacity 0.3s' }}
                 />
               );
@@ -537,7 +567,6 @@ export function FamilyTree({
                   onClick={onNodeClick}
                   onDoubleClick={onNodeDoubleClick}
                   nodeRef={(el) => { if (el) nodeRefs.current.set(treeNode.member.id, el); }}
-                  memberMap={memberMap}
                   onShowSpouses={setSpousePanelMember}
                 />
               </div>

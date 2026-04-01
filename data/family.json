@@ -380,8 +380,8 @@
       "birthDate": "1973-11-05",
       "deathDate": null,
       "birthPlace": "Bandung, ID",
-      "fatherId": null,
-      "motherId": null,
+      "fatherId": "m053",
+      "motherId": "m054",
       "spouseIds": [],
       "childrenIds": ["m016", "m017"],
       "marriages": [
@@ -434,7 +434,7 @@
       "fatherId": "m028",
       "motherId": "m030",
       "spouseIds": [],
-      "childrenIds": [],
+      "childrenIds": ["m051", "m052"],
       "marriages": [
         { "spouseId": "m041", "status": "married", "marriedDate": "2010-04-02", "endDate": null }
       ],
@@ -468,9 +468,11 @@
       "fatherId": "m031",
       "motherId": "m029",
       "spouseIds": [],
-      "childrenIds": [],
-      "marriages": [],
-      "biography": "Putri Nita Subardjo dan Ridwan Hakim. Dosen bahasa Inggris di Universitas Airlangga, sedang menempuh program doktoral di bidang linguistik."
+      "childrenIds": ["m049", "m050"],
+      "marriages": [
+        { "spouseId": "m048", "status": "married", "marriedDate": "2014-09-06", "endDate": null }
+      ],
+      "biography": "Putri Nita Subardjo dan Ridwan Hakim. Dosen bahasa Inggris di Universitas Airlangga, kini sudah meraih gelar doktor linguistik dari Universitas Gadjah Mada."
     },
     {
       "id": "m036",
@@ -641,7 +643,7 @@
       "fatherId": null,
       "motherId": null,
       "spouseIds": [],
-      "childrenIds": [],
+      "childrenIds": ["m051", "m052"],
       "marriages": [
         { "spouseId": "m033", "status": "married", "marriedDate": "2010-04-02", "endDate": null }
       ],
@@ -740,6 +742,344 @@
       "childrenIds": [],
       "marriages": [],
       "biography": "Generasi ke-5 keluarga Subardjo. Bayi mungil Aurel & Rizal. Cucu termuda keluarga Pratama, cicit dari Dian Santoso."
+    },
+    {
+      "id": "m048",
+      "name": "Arif Wibowo",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "1983-02-27",
+      "deathDate": null,
+      "birthPlace": "Malang, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m049", "m050"],
+      "marriages": [
+        { "spouseId": "m035", "status": "married", "marriedDate": "2014-09-06", "endDate": null }
+      ],
+      "biography": "Suami Kirana Hakim. Dosen teknik elektro di Institut Teknologi Sepuluh Nopember (ITS) Surabaya, aktif meneliti di bidang energi terbarukan."
+    },
+    {
+      "id": "m049",
+      "name": "Sena Wibowo",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "2016-05-14",
+      "deathDate": null,
+      "birthPlace": "Surabaya, ID",
+      "fatherId": "m048",
+      "motherId": "m035",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Generasi ke-5 dari cabang Djoko Subardjo melalui Nita Hakim. Anak sulung Kirana & Arif, senang bermain lego dan sains."
+    },
+    {
+      "id": "m050",
+      "name": "Ara Wibowo",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "2019-11-03",
+      "deathDate": null,
+      "birthPlace": "Surabaya, ID",
+      "fatherId": "m048",
+      "motherId": "m035",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Generasi ke-5 dari cabang Djoko Subardjo melalui Nita Hakim. Adik Sena, gadis kecil yang periang dan gemar menyanyi."
+    },
+    {
+      "id": "m051",
+      "name": "Dino Saputra",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "2013-08-19",
+      "deathDate": null,
+      "birthPlace": "Surabaya, ID",
+      "fatherId": "m041",
+      "motherId": "m033",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Generasi ke-4 dari cabang Djoko Subardjo melalui Fajar. Putra sulung Tania & Denny, siswa SD yang aktif dan suka memasak bersama ayahnya."
+    },
+    {
+      "id": "m052",
+      "name": "Mia Saputra",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "2017-03-07",
+      "deathDate": null,
+      "birthPlace": "Surabaya, ID",
+      "fatherId": "m041",
+      "motherId": "m033",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Generasi ke-4 dari cabang Djoko Subardjo melalui Fajar. Adik Dino, gadis kecil yang gemar menggambar dan bercita-cita menjadi dokter gigi seperti ibunya."
+    },
+
+    {
+      "id": "m053",
+      "name": "Keanu Dimitrov",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "1948-07-14",
+      "deathDate": "2018-03-22",
+      "birthPlace": "Bandung, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m055", "m014", "m056", "m057"],
+      "marriages": [
+        { "spouseId": "m054", "status": "widowed", "marriedDate": "1968-09-10", "endDate": "2018-03-22" }
+      ],
+      "biography": "Pendiri keluarga Dimitrov di Bandung. Keturunan ayah berdarah Bulgaria yang menetap di Indonesia sejak 1930-an. Keanu tumbuh sebagai pengusaha tekstil dan meninggalkan warisan bisnis yang kuat bagi keluarganya."
+    },
+    {
+      "id": "m054",
+      "name": "Irma Wijayanti",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "1951-04-05",
+      "deathDate": null,
+      "birthPlace": "Bandung, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m055", "m014", "m056", "m057"],
+      "marriages": [
+        { "spouseId": "m053", "status": "widowed", "marriedDate": "1968-09-10", "endDate": "2018-03-22" }
+      ],
+      "biography": "Ibu dari keluarga Dimitrov. Mantan dosen sastra Indonesia di Universitas Padjadjaran, kini menghabiskan hari-harinya menulis memoar dan menjaga cucu-cucunya di Bandung."
+    },
+    {
+      "id": "m055",
+      "name": "Benny Dimitrov",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "1970-02-18",
+      "deathDate": null,
+      "birthPlace": "Bandung, ID",
+      "fatherId": "m053",
+      "motherId": "m054",
+      "spouseIds": [],
+      "childrenIds": ["m061", "m062"],
+      "marriages": [
+        { "spouseId": "m058", "status": "married", "marriedDate": "1996-11-23", "endDate": null }
+      ],
+      "biography": "Putra sulung Keanu & Irma Dimitrov. Melanjutkan bisnis tekstil keluarga dan berhasil mengembangkannya ke pasar ekspor Asia Tenggara. Dikenal sebagai sosok tegas namun bijaksana dalam keluarga."
+    },
+    {
+      "id": "m056",
+      "name": "Sandra Dimitrov",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "1977-08-30",
+      "deathDate": null,
+      "birthPlace": "Bandung, ID",
+      "fatherId": "m053",
+      "motherId": "m054",
+      "spouseIds": [],
+      "childrenIds": ["m063", "m064"],
+      "marriages": [
+        { "spouseId": "m059", "status": "married", "marriedDate": "2004-06-12", "endDate": null }
+      ],
+      "biography": "Putri ketiga Keanu & Irma Dimitrov. Perancang interior berbakat yang mendirikan studio desainnya sendiri di Bandung. Senang memadukan estetika Eropa Timur dengan sentuhan lokal Indonesia."
+    },
+    {
+      "id": "m057",
+      "name": "Riko Dimitrov",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "1980-12-09",
+      "deathDate": null,
+      "birthPlace": "Bandung, ID",
+      "fatherId": "m053",
+      "motherId": "m054",
+      "spouseIds": [],
+      "childrenIds": ["m065", "m066"],
+      "marriages": [
+        { "spouseId": "m060", "status": "married", "marriedDate": "2008-03-15", "endDate": null }
+      ],
+      "biography": "Putra bungsu Keanu & Irma Dimitrov. Chef profesional yang membuka restoran fusion Indonesia-Eropa di Bandung dan Jakarta. Pernah magang di restoran berbintang Michelin di Praha."
+    },
+    {
+      "id": "m058",
+      "name": "Dewi Anggraini",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "1972-06-14",
+      "deathDate": null,
+      "birthPlace": "Cimahi, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m061", "m062"],
+      "marriages": [
+        { "spouseId": "m055", "status": "married", "marriedDate": "1996-11-23", "endDate": null }
+      ],
+      "biography": "Istri Benny Dimitrov. Akuntan senior yang mengelola keuangan perusahaan tekstil keluarga Dimitrov selama lebih dari dua dekade."
+    },
+    {
+      "id": "m059",
+      "name": "Haris Susanto",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "1975-03-20",
+      "deathDate": null,
+      "birthPlace": "Bandung, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m063", "m064"],
+      "marriages": [
+        { "spouseId": "m056", "status": "married", "marriedDate": "2004-06-12", "endDate": null }
+      ],
+      "biography": "Suami Sandra Dimitrov. Arsitek yang berfokus pada bangunan ramah lingkungan. Proyek-proyeknya tersebar di berbagai kota besar Jawa Barat."
+    },
+    {
+      "id": "m060",
+      "name": "Nining Lestari",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "1982-09-25",
+      "deathDate": null,
+      "birthPlace": "Garut, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m065", "m066"],
+      "marriages": [
+        { "spouseId": "m057", "status": "married", "marriedDate": "2008-03-15", "endDate": null }
+      ],
+      "biography": "Istri Riko Dimitrov. Ahli gizi dan food stylist yang kerap berkolaborasi dengan suaminya untuk konten kuliner di media sosial."
+    },
+    {
+      "id": "m061",
+      "name": "Felix Dimitrov",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "1998-04-11",
+      "deathDate": null,
+      "birthPlace": "Bandung, ID",
+      "fatherId": "m055",
+      "motherId": "m058",
+      "spouseIds": [],
+      "childrenIds": ["m068"],
+      "marriages": [
+        { "spouseId": "m067", "status": "married", "marriedDate": "2022-10-01", "endDate": null }
+      ],
+      "biography": "Cucu tertua Keanu & Irma Dimitrov. Manajer operasional pabrik tekstil yang dirintis kakeknya, sekaligus aktif mengembangkan lini produk baru yang lebih ramah lingkungan."
+    },
+    {
+      "id": "m062",
+      "name": "Nola Dimitrov",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "2001-11-27",
+      "deathDate": null,
+      "birthPlace": "Bandung, ID",
+      "fatherId": "m055",
+      "motherId": "m058",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Cucu Keanu & Irma Dimitrov. Mahasiswi hubungan internasional yang fasih berbahasa Indonesia, Inggris, dan Bulgaria. Bercita-cita menjadi diplomat."
+    },
+    {
+      "id": "m063",
+      "name": "Zico Susanto",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "2005-07-04",
+      "deathDate": null,
+      "birthPlace": "Bandung, ID",
+      "fatherId": "m059",
+      "motherId": "m056",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Cucu Keanu & Irma Dimitrov. Remaja SMA yang berbakat di bidang desain grafis digital, mewarisi minat seni dari ibunya."
+    },
+    {
+      "id": "m064",
+      "name": "Mara Susanto",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "2008-02-19",
+      "deathDate": null,
+      "birthPlace": "Bandung, ID",
+      "fatherId": "m059",
+      "motherId": "m056",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Cucu Keanu & Irma Dimitrov. Adik Zico. Siswi SD yang senang bermain biola dan mengikuti perlombaan sains tingkat kota."
+    },
+    {
+      "id": "m065",
+      "name": "Juno Dimitrov",
+      "photo": "",
+      "gender": "male",
+      "birthDate": "2009-05-30",
+      "deathDate": null,
+      "birthPlace": "Bandung, ID",
+      "fatherId": "m057",
+      "motherId": "m060",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Cucu Keanu & Irma Dimitrov. Anak pertama Riko & Nining. Gemar memasak sejak kecil mengikuti jejak ayahnya, dan sudah beberapa kali ikut lomba masak antar sekolah."
+    },
+    {
+      "id": "m066",
+      "name": "Elara Dimitrov",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "2012-08-16",
+      "deathDate": null,
+      "birthPlace": "Bandung, ID",
+      "fatherId": "m057",
+      "motherId": "m060",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Cucu termuda Keanu & Irma Dimitrov dari Riko & Nining. Gadis kreatif yang suka menggambar karakter dan bermimpi menjadi animator."
+    },
+    {
+      "id": "m067",
+      "name": "Keysha Putri",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "2000-01-17",
+      "deathDate": null,
+      "birthPlace": "Bandung, ID",
+      "fatherId": null,
+      "motherId": null,
+      "spouseIds": [],
+      "childrenIds": ["m068"],
+      "marriages": [
+        { "spouseId": "m061", "status": "married", "marriedDate": "2022-10-01", "endDate": null }
+      ],
+      "biography": "Istri Felix Dimitrov. Fotografer produk dan content creator yang aktif di industri fashion lokal Bandung."
+    },
+    {
+      "id": "m068",
+      "name": "Kyra Dimitrov",
+      "photo": "",
+      "gender": "female",
+      "birthDate": "2024-01-28",
+      "deathDate": null,
+      "birthPlace": "Bandung, ID",
+      "fatherId": "m061",
+      "motherId": "m067",
+      "spouseIds": [],
+      "childrenIds": [],
+      "marriages": [],
+      "biography": "Generasi ke-4 dari cabang Dimitrov-Wijayanti. Cicit pertama Keanu & Irma, bayi mungil yang menjadi kebanggaan seluruh keluarga besar Dimitrov."
     }
   ]
 }

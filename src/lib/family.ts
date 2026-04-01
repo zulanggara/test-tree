@@ -98,31 +98,29 @@ export function getAncestors(memberId: string, memberMap: Map<string, FamilyMemb
 export function buildTree(members: FamilyMember[], memberMap: Map<string, FamilyMember>): TreeNode[] {
   const visited = new Set<string>();
 
-  // Kumpulkan semua ID yang muncul sebagai spouse dari member lain
-  // → mereka tidak boleh jadi root node tersendiri
-  const appearsAsSpouseOf = new Set<string>();
+  // Kumpulkan ID yang merupakan pasangan dari anggota yang MEMILIKI orang tua.
+  // Mereka sudah tampil inline di samping pasangannya → tidak perlu jadi root tersendiri.
+  const isSpouseOfParentedMember = new Set<string>();
   for (const m of members) {
-    for (const sid of getSpouseIds(m)) {
-      appearsAsSpouseOf.add(sid);
+    if (m.fatherId || m.motherId) {
+      for (const sid of getSpouseIds(m)) {
+        isSpouseOfParentedMember.add(sid);
+      }
     }
   }
 
-  // Root = tidak punya parent DAN tidak muncul hanya sebagai spouse orang lain
-  // Tapi jika seseorang adalah spouse sekaligus punya anak sendiri (dari pernikahan berbeda),
-  // dia tetap perlu muncul → kita handle dengan visited check di buildNode
+  // Root = tidak punya orang tua
   const potentialRoots = members.filter(m => !m.fatherId && !m.motherId);
 
-  // Deduplicate: jika A dan B saling spouse, hanya salah satu jadi root
-  // Prioritas: yang punya childrenIds lebih banyak, atau yang datang lebih dulu di array
+  // Deduplicate: jika A dan B saling pasangan dan keduanya potentialRoot,
+  // hanya yang pertama masuk rootSet. Yang lain tampil inline sebagai spouse.
   const rootSet = new Set<string>();
   for (const root of potentialRoots) {
     if (rootSet.has(root.id)) continue;
-    // Jika sudah ada spouse-nya di rootSet, skip
     const spouseAlreadyRoot = getSpouseIds(root).some(sid => rootSet.has(sid));
     if (spouseAlreadyRoot) continue;
-    // Jika dia HANYA muncul sebagai spouse dan tidak punya children → skip, akan digambar inline
-    const isOnlySpouse = appearsAsSpouseOf.has(root.id) && root.childrenIds.length === 0;
-    if (isOnlySpouse) continue;
+    // Sudah ditampilkan inline di samping pasangan yang punya orang tua → skip
+    if (isSpouseOfParentedMember.has(root.id)) continue;
     rootSet.add(root.id);
   }
 
